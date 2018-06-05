@@ -1,3 +1,6 @@
+imports:
+    - { resource: parameters.yaml }
+
 parameters:
     # Adds a fallback DATABASE_URL if the env var is not set.
     # This allows you to run cache:warmup even if your
@@ -8,15 +11,59 @@ parameters:
 doctrine:
     dbal:
         # configure these for your database server
-        driver: 'pdo_mysql'
-        server_version: '5.7'
-        charset: utf8mb4
-        default_table_options:
-            charset: utf8mb4
-            collate: utf8mb4_unicode_ci
+        default_connection: default
+        connections:
+             # A collection of different named connections (e.g. default, conn2, etc)
+            default:
+                dbname:               "%database_name%"
+                host:                 "%database_host%"
+                port:                 "%database_port%"
+                user:                 "%database_user%"
+                password:             "%database_password%"
+                # charset of the database
+                charset:              utf8mb4
+                # charset and collation of the tables. Not inherited from database
+                default_table_options:
+                    charset:          utf8mb4
+                    collate:          utf8mb4_unicode_ci
+                #path:                 ~
+                #memory:               ~
+                # The unix socket to use for MySQL
+                #unix_socket:          ~
+                # True to use as persistent connection for the ibm_db2 driver
+                #persistent:           ~
+                # The protocol to use for the ibm_db2 driver (default to TCPIP if omitted)
+                #protocol:             ~
+                # True to use dbname as service name instead of SID for Oracle
+                #service:              ~
+                # The session mode to use for the oci8 driver
+                #sessionMode:          ~
+                # True to use a pooled server with the oci8 driver
+                #pooled:               ~
+                # Configuring MultipleActiveResultSets for the pdo_sqlsrv driver
+                #MultipleActiveResultSets:  ~
+                driver:               pdo_mysql
+                #platform_service:     ~
+                # the version of your database engine
+                server_version:       '5.7'
+                # if the url option is specified, it will override the above config
+                #url: '%env(resolve:DATABASE_URL)%'
+                # when true, queries are logged to a 'doctrine' monolog channel
+                #logging:              '%kernel.debug%'
+                #profiling:            '%kernel.debug%'
+                #driver_class:         ~
+                #wrapper_class:        ~
+                # the DBAL keepSlave option
+                #keep_slave:           false
+                #options:
+                    # an array of options
+                #    key:                  []
+                #mapping_types:
+                    # an array of mapping types
+                #    name:                 []
 
-        url: '%env(resolve:DATABASE_URL)%'
     orm:
+        default_entity_manager:  default
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true

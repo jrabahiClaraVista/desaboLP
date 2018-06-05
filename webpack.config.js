@@ -1,3 +1,5 @@
+ // yarn add @symfony/webpack-encore --dev
+
 var Encore = require('@symfony/webpack-encore');
 
 Encore
@@ -11,14 +13,20 @@ Encore
     // .enableVersioning(Encore.isProduction())
 
     // uncomment to define the assets of the project
-    // .addEntry('js/app', './assets/js/app.js')
-    // .addStyleEntry('css/app', './assets/css/app.scss')
+    // yarn add bootstrap-sass --dev
+    .addEntry('js/app', './assets/js/main.js')
+    .addStyleEntry('css/app', './assets/css/global.scss')
 
     // uncomment if you use Sass/SCSS files
+    // yarn add --dev sass-loader node-sass
     // .enableSassLoader()
+    .enableSassLoader(function(sassOptions) {}, {
+        resolveUrlLoader: false
+    })
 
     // uncomment for legacy applications that require $/jQuery as a global variable
-    // .autoProvidejQuery()
+    // yarn add jquery --dev
+    .autoProvidejQuery()
 ;
 
 module.exports = Encore.getWebpackConfig();
