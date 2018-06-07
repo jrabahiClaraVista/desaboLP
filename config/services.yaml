@@ -24,5 +24,14 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    App\Service\MailerBuilder:
+        public: true
+        arguments:
+            $container: '@service_container'
+
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    #App\Service\EmailService\:
+        #ressource: '../src/Service'

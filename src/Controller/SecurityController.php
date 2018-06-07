@@ -22,8 +22,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  * Controller used to manage the application security.
  * See https://symfony.com/doc/current/cookbook/security/form_login_setup.html.
  *
- * @author Ryan Weaver <weaverryan@gmail.com>
- * @author Javier Eguiluz <javier.eguiluz@gmail.com>
+ * @author Jerome Rabahi <j.rabahi@claravista.fr>
  */
 class SecurityController extends AbstractController
 {
@@ -66,14 +65,5 @@ class SecurityController extends AbstractController
     public function logout(): void
     {
         throw new \Exception('This should never be reached!');
-    }
-
-    /**
-     * @Route("/", name="homepage")
-     */
-    public function homepage(): Response
-    {
-        return $this->render('app/homepage.html.twig', [
-        ]);
     }
 }

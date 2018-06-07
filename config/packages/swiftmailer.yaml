@@ -1,3 +1,9 @@
 swiftmailer:
-    url: '%env(MAILER_URL)%'
-    spool: { type: 'memory' }
+    #url: '%env(MAILER_URL)%'
+    transport:  "%smtp_transport%"
+    host:       "%smtp_host%"
+    username:   "%smtp_user%"
+    password:   "%smtp_password%"
+    port:       "%smtp_port%"
+    encryption: "%smtp_encrypt%"
+    spool:      { type: memory }

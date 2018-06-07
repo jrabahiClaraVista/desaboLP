@@ -1,3 +1,11 @@
 #
 
 title.login: Login
+title.sign_up: Sign up
+
+label.username: Username
+label.password: Password
+
+action.sign_in: Sign in
+action.forgot_pwd: Forgot password
+action.register: Register
