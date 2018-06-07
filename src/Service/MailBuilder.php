@@ -3,11 +3,10 @@
 namespace App\Service;
 
 use Doctrine\ORM\EntityManager;
-use Psr\Container\ContainerInterface;
+#use Psr\Container\ContainerInterface;
 
-class MailerBuilder
+class MailBuilder
 {
-    private $container;
     private $smtp_host;
     private $smtp_user;
     private $smtp_password;
@@ -15,14 +14,14 @@ class MailerBuilder
     private $smtp_encrypt;
 
 
-    public function __construct( ContainerInterface $container)
+    public function __construct($smtp_host, $smtp_user, $smtp_password, $smtp_port, $smtp_encrypt)
     {
-        $this->container = $container;
-        $this->smtp_host = $this->container->getParameter("smtp_host");
-        $this->smtp_user = $this->container->getParameter("smtp_user");
-        $this->smtp_password = $this->container->getParameter("smtp_password");
-        $this->smtp_port = $this->container->getParameter("smtp_port");
-        $this->smtp_encrypt = $this->container->getParameter("smtp_encrypt");
+        #$this->container = $container;
+        $this->smtp_host = $smtp_host;
+        $this->smtp_user = $smtp_user;
+        $this->smtp_password = $smtp_password;
+        $this->smtp_port = $smtp_port;
+        $this->smtp_encrypt = $smtp_encrypt;
     }
 
     public function getMailer() :\Swift_Mailer
@@ -74,12 +73,13 @@ class MailerBuilder
         $headers->addParameterizedHeader(
         'Header-Name', ' header value'
         array('foo' => 'bar', 'foo2' => 'bar2')
-    );
-    var_dump($headers->get('Return-Path'));
-    */
-    $headers->addTextHeader('X-CampaignId', $options['idCampaign']);
-    $headers->addTextHeader('X-TrackingId', $options['trackingId']);
-}
-return $message;
-}
+        );
+        var_dump($headers->get('Return-Path'));
+        */
+        $headers->addTextHeader('X-CampaignId', $options['idCampaign']);
+        $headers->addTextHeader('X-TrackingId', $options['trackingId']);
+    }
+
+    return $message;
+    }
 }

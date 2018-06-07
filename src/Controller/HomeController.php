@@ -11,14 +11,14 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-use App\Service\MailerBuilder;
+use App\Service\MailBuilder;
 
 /**
 * Controller used to manage the application security.
@@ -26,12 +26,22 @@ use App\Service\MailerBuilder;
 *
 * @author Jerome Rabahi <j.rabahi@claravista.fr>
 */
-class HomeController extends Controller
+class HomeController extends AbstractController
 {
+    /**
+     * @var MailBuilder
+     */
+    private $mailer_builder;
+
+    public function __construct(MailBuilder $mailer_builder)
+    {
+        $this->mailer_builder = $mailer_builder;
+    }
+
+
     public function home(): Response
     {
-        $mailer_service = $this->container->get('App\Service\MailerBuilder');
-        $mailer = $mailer_service->getMailer();
+        $mailer = $this->mailer_builder->getMailer();
 
         $options['objet'] = "[TEST] Ceci est un test";
         // Config a verified email on AWS SES here !!
@@ -50,7 +60,7 @@ class HomeController extends Controller
         $options['idCampaign'] = null;
         $options['trackingId'] = null;
 
-        $message = $mailer_service->createMessage($options);
+        $message = $this->mailer_builder->createMessage($options);
 
         //Try to send message and get exeption if fail
         try{

@@ -11,6 +11,7 @@ services:
         public: false       # Allows optimizing the container by removing unused services; this also means
                             # fetching services directly from the container via $container->get() won't work.
                             # The best practice is to be explicit about your dependencies anyway.
+        bind: ~             # Bind to all services arguments
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -24,11 +25,17 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    App\Service\MailerBuilder:
-        public: true
+    App\Controller\HomeController:
         arguments:
-            $container: '@service_container'
+            $mailer_builder: '@App\Service\MailBuilder'
 
+    App\Service\MailBuilder:
+        arguments:
+            $smtp_host: '%smtp_host%'
+            $smtp_user: '%smtp_user%'
+            $smtp_password: '%smtp_password%'
+            $smtp_port: '%smtp_port%'
+            $smtp_encrypt: '%smtp_encrypt%'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
