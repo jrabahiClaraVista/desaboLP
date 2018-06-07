@@ -1,12 +1,20 @@
 // assets/css/global.scss
 
-// customize some Bootstrap variables
-$brand-primary: darken(#428bca, 20%);
+/*
+ * Fichier SASS global à générer via le module Enore
+ * @author Jérome Rabahi
+ * @version 1.0
+ * Template Bootstrap
+ */
 
-
-$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-// set if you're also including font-awesome
-$fa-font-path: "~font-awesome/fonts";
+// Edit all Bootstrap variables bellow
+$some_var: darken(#428bca, 20%);
 
 // the ~ allows you to reference things in node_modules
-@import '~bootstrap-sass/assets/stylesheets/bootstrap';
+/*
+ * Import Sources
+ */
+@import '~bootstrap/scss/bootstrap';
+
+@import 'custom';
+@import 'login';

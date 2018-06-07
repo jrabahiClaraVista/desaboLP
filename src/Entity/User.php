@@ -12,7 +12,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -27,7 +27,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class User implements UserInterface, \Serializable
+class User implements AdvancedUserInterface, \Serializable
 {
     /**
      * @var int
@@ -65,6 +65,13 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean")
+     */
+    private $isActive;
 
     /**
      * @var array
@@ -118,6 +125,16 @@ class User implements UserInterface, \Serializable
         $this->password = $password;
     }
 
+    public function getIsActive(): bool
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive(bool $isActive): void
+    {
+        $this->isActive = $isActive;
+    }
+
     /**
      * Returns the roles or permissions granted to the user for security.
      */
@@ -153,6 +170,29 @@ class User implements UserInterface, \Serializable
     }
 
     /**
+     * AdvancedUserInterface
+     */
+     public function isAccountNonExpired()
+     {
+         return true;
+     }
+
+     public function isAccountNonLocked()
+     {
+         return true;
+     }
+
+     public function isCredentialsNonExpired()
+     {
+         return true;
+     }
+
+     public function isEnabled()
+     {
+         return $this->isActive;
+     }
+
+    /**
      * Removes sensitive data from the user.
      *
      * {@inheritdoc}
@@ -169,7 +209,7 @@ class User implements UserInterface, \Serializable
     public function serialize(): string
     {
         // add $this->salt too if you don't use Bcrypt or Argon2i
-        return serialize([$this->id, $this->username, $this->password]);
+        return serialize([$this->id, $this->username, $this->password,$this->isActive]);
     }
 
     /**
@@ -178,6 +218,6 @@ class User implements UserInterface, \Serializable
     public function unserialize($serialized): void
     {
         // add $this->salt too if you don't use Bcrypt or Argon2i
-        [$this->id, $this->username, $this->password] = unserialize($serialized, ['allowed_classes' => false]);
+        [$this->id, $this->username, $this->password,$this->isActive,] = unserialize($serialized, ['allowed_classes' => false]);
     }
 }
