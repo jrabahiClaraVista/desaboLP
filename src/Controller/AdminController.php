@@ -24,27 +24,17 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 *
 * @author Jerome Rabahi <j.rabahi@claravista.fr>
 */
-class SecurityController extends AbstractController
+class AdminController extends AbstractController
 {
-    public function login(AuthenticationUtils $helper): Response
+    public function admin(AuthenticationUtils $helper, AuthorizationCheckerInterface $authChecker): Response
     {
-        return $this->render('security/login.html.twig', [
-            // last username entered by the user (if any)
-            'last_username' => $helper->getLastUsername(),
-            // last authentication error (if any)
-            'error' => $helper->getLastAuthenticationError(),
-        ]);
-    }
+        if (false === $authChecker->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException('Unable to access this page!');
+        }
 
-    /**
-    * This is the route the user can use to logout.
-    *
-    * But, this will never be executed. Symfony will intercept this first
-    * and handle the logout automatically. See logout in app/config/security.yml
-    *
-    */
-    public function logout(): void
-    {
-        throw new \Exception('This should never be reached!');
+        return $this->render('admin/admin.html.twig', [
+            'cookie' => $_COOKIE,
+            'test' => 'rest',
+        ]);
     }
 }

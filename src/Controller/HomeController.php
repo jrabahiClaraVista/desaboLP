@@ -1,13 +1,13 @@
 <?php
 
 /*
- * This file is part of the Symfony package.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+* This file is part of the Symfony package.
+*
+* (c) Fabien Potencier <fabien@symfony.com>
+*
+* For the full copyright and license information, please view the LICENSE
+* file that was distributed with this source code.
+*/
 
 namespace App\Controller;
 
@@ -21,11 +21,11 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use App\Service\MailerBuilder;
 
 /**
- * Controller used to manage the application security.
- * See https://symfony.com/doc/current/cookbook/security/form_login_setup.html.
- *
- * @author Jerome Rabahi <j.rabahi@claravista.fr>
- */
+* Controller used to manage the application security.
+* See https://symfony.com/doc/current/cookbook/security/form_login_setup.html.
+*
+* @author Jerome Rabahi <j.rabahi@claravista.fr>
+*/
 class HomeController extends Controller
 {
     public function home(): Response
@@ -52,7 +52,18 @@ class HomeController extends Controller
 
         $message = $mailer_service->createMessage($options);
 
-        $mailer->send($message);
+        //Try to send message and get exeption if fail
+        try{
+            //COMMENT DO NOT SEND EMAIL FOR NOW
+            //$mailer->send($message);
+            //$var = 1;
+        }
+        catch(\Swift_TransportException $e){
+            $success = 0;
+            $response = $e->getMessage() ;
+            $request->getSession()->getFlashBag()->add('notice', 'Error while sending the email.');
+            //var_dump($response); die();
+        }
 
         return $this->render('app/homepage.html.twig', [
             'mailer' => $mailer,

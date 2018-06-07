@@ -4,7 +4,21 @@
 
 # the "app_lucky_number" route name is not important yet
 
-
+# Routes home
 homepage:
     path: /
     controller: App\Controller\HomeController::home
+
+# Routes Admin
+admin:
+    path: /admin
+    controller:  App\Controller\AdminController::admin
+
+# Routes security
+security_login:
+    path: /login
+    controller:  App\Controller\SecurityController::login
+
+security_logout:
+    path: /logout
+    controller:  App\Controller\SecurityController::logout
