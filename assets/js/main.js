@@ -24,18 +24,31 @@ require('bootstrap');
 $(document).ready(function() {
     //$('[data-toggle="popover"]').popover();
 
-    // Display or hide password, Checkou out the DOM order to make sure it works properly
-    $('.visible_pwd').on('click', function(event){
-        if($(this).attr('data') == "hidden"){
-            $(this).children('i').removeClass('fa-eye').addClass('fa-eye-slash');
-            $(this).attr('data','visible')
-            $(this).parent().prev('input').attr('type','text');
-        }
-        else{
-            $(this).children('i').removeClass('fa-eye-slash').addClass('fa-eye');
-            $(this).attr('data','hidden')
-            $(this).parent().prev('input').attr('type','password');
-        }
-    });
+    var element, circle, d, x, y;
+
+    $("button span")
+        .click(function(e){ 
+
+            e.preventDefault();
+
+            element = $(this);
+          
+            if(element.find(".circle").length == 0)
+                element.prepend("<span class='circle'></span>");
+                
+            circle = element.find(".circle");
+            circle.removeClass("animate");
+            
+            if(!circle.height() && !circle.width())
+          {
+                d = Math.max(element.outerWidth(), element.outerHeight());
+                circle.css({height: d, width: d});
+            }
+            
+            x = e.pageX - element.offset().left - circle.width()/2;
+            y = e.pageY - element.offset().top - circle.height()/2;
+            
+            circle.css({top: y+'px', left: x+'px'}).addClass("animate");
+    })
 
 });

@@ -45,4 +45,13 @@ class AppController extends AbstractController
             
         ]);
     }
+
+    public function unsubscribe($campaign, $email): Response
+    {
+        return $this->render('app/unsubscribe.html.twig', [
+            
+        ]);
+    }
+
+
 }

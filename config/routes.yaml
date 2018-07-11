@@ -9,6 +9,10 @@ homepage:
     path: /
     controller: App\Controller\AppController::homepage
 
+unsubscribe:
+    path: /unsubscribe/{campaign}/{email}
+    controller: App\Controller\AppController::unsubscribe
+
 # Routes Admin
 admin:
     path: /admin
