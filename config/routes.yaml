@@ -7,7 +7,7 @@
 # Routes home
 homepage:
     path: /
-    controller: App\Controller\HomeController::home
+    controller: App\Controller\AppController::homepage
 
 # Routes Admin
 admin:
@@ -22,3 +22,11 @@ security_login:
 security_logout:
     path: /logout
     controller:  App\Controller\SecurityController::logout
+
+security_register:
+    path: /register
+    controller: App\Controller\SecurityController::register
+
+security_account_validation:
+    path: /account_validation/{id}/{token}
+    controller: App\Controller\SecurityController::account_validation

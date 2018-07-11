@@ -2,7 +2,6 @@
 
 namespace App\Service;
 
-use Doctrine\ORM\EntityManager;
 #use Psr\Container\ContainerInterface;
 
 class MailBuilder
@@ -63,8 +62,8 @@ class MailBuilder
     ->addPart($options['text'],'text/plain')
     ;
 
-    if($options['idCampaign'] != null && $options['trackingId'] != null){
-        $headers = $message->getHeaders();
+    //if($options['idCampaign'] != null && $options['trackingId'] != null){
+    //    $headers = $message->getHeaders();
         /*$headers->addPathHeader('X-Abuse-Reports-To', 'complaint@actions-pdv-l.fr');
         $headers->addPathHeader('Your-Header-Name', 'person@example.org');
         X-Abuse-Reports-To - abuse
@@ -76,9 +75,9 @@ class MailBuilder
         );
         var_dump($headers->get('Return-Path'));
         */
-        $headers->addTextHeader('X-CampaignId', $options['idCampaign']);
-        $headers->addTextHeader('X-TrackingId', $options['trackingId']);
-    }
+    //    $headers->addTextHeader('X-CampaignId', $options['idCampaign']);
+    //    $headers->addTextHeader('X-TrackingId', $options['trackingId']);
+    //}
 
     return $message;
     }

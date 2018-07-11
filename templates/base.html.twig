@@ -10,10 +10,15 @@
 </head>
 <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %} mh-100">
 
-    {% block page %}{% endblock %}
 
-    {% block javascripts %}
-        <link rel="stylesheet" href="{{ asset('build/js/app.css') }}">
-    {% endblock %}
+    <div class="container-fluid mh-100">
+        <div class="row mh-100">
+            {% block body %}{% endblock %}
+
+            {% block javascripts %}
+                <script src="{{ asset('build/js/app.js') }}"></script>
+            {% endblock %}
+        </div>
+    </div>
 </body>
 </html>

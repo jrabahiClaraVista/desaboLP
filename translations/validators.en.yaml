@@ -1,0 +1,3 @@
+user.password.not_blank: The password must not be blank
+user.username.unique: The Username already exists
+user.email.unique: This email is already taken !

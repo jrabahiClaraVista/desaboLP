@@ -5,6 +5,7 @@ namespace App\Repository;
 
 use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\EntityManager;
 
 class UserRepository extends EntityRepository implements UserLoaderInterface
 {

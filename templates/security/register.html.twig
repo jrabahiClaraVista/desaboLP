@@ -1,0 +1,144 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id %}register{% endblock %}
+{% block body_class %}register-bg{% endblock %}
+
+
+{% block body %}
+
+<div class="container-fluid">
+    <div class="row justify-content-center align-items-center flex-row mh-100 justify-content-center">
+        <div class="col-lg-6">
+            <div class="card p-4">
+                <div class="card-body">
+                    {{ form_start(form, {'attr' : {'class' : 'needs-validation', 'novalidate' : ''}}) }}
+                    <fieldset>
+                        <legend class="pb-4">
+                            {{ 'title.sign_up'|trans }}
+                        </legend>
+                        <p class="text-muted">Sign Up a new account</p>
+                        <div class="form-group">
+                            {% for error in errors %}
+                            {% if error.propertyPath == 'username' %}
+                            <div class="alert alert-danger">
+                                {{ error.message }}
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                            <!--label for="username">{{ 'label.username'|trans }}</label-->
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="input1"><i class="fas fa-user"></i></span>
+                                </div>
+                                {{ form_widget(form.username, { 'attr': {'class' : 'form-control', 'placeholder' : 'label.username'|trans, 'aria-label' : 'label.username'|trans, 'aria-describedby' : 'input1' } }) }}
+                                <div class="invalid-feedback">
+                                    Please provide a valid Username
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {% for error in errors %}
+                            {% if error.propertyPath == 'email' %}
+                            <div class="alert alert-danger">
+                                {{ error.message }}
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                            <!--label for="email">{{ 'label.email'|trans }}</label-->
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="input2"><i class="fas fa-at"></i></span>
+                                </div>
+                                {{ form_widget(form.email, { 'attr': {'class' : 'form-control', 'placeholder' : 'label.email'|trans, 'aria-label' : 'label.email'|trans, 'aria-describedby' : 'input2' } }) }}
+                                <div class="invalid-feedback">
+                                    Please provide a valid Email
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {% for error in errors %}
+                            {% if error.propertyPath == 'plainPassword' %}
+                            <div class="alert alert-danger">
+                                {{ error.message }}
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                            <!--label for="password">{{ 'label.password'|trans }}</label-->
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="input3"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                                </div>
+                                {{ form_widget(form.plainPassword.first, { 'attr': {'class' : 'form-control', 'placeholder' : 'label.password'|trans, 'aria-label' : 'label.password'|trans, 'aria-describedby' : 'input3' } }) }}
+                                <div class="input-group-prepend">
+                                    <span data="hidden" type="text" class="input-group-text btn visible_pwd"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please provide a valid Password
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <!--label for="password">{{ 'label.password'|trans }}</label-->
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="input4"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                                </div>
+                                {{ form_widget(form.plainPassword.second, { 'attr': {'class' : 'form-control', 'placeholder' : 'label.password_repeat'|trans, 'aria-label' : 'label.password_repeat'|trans, 'aria-describedby' : 'input4' } }) }}
+                                <div class="input-group-prepend">
+                                    <span data="hidden" type="text" class="input-group-text btn visible_pwd"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please provide a valid Password
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group text-right">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'action.register'|trans }}
+                            </button>
+                        </div>
+                    </fieldset>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+
+<script>
+(function() {
+    'use strict';
+    window.addEventListener('load', function() {
+        var form = document.getElementsByClassName('needs-validation')[0],
+        password = document.getElementById("user_plainPassword_first"),
+        confirm_password = document.getElementById("user_plainPassword_second");
+
+        // Check if passwords are the same
+        function validatePassword(){
+            if(password.value != confirm_password.value) {
+                confirm_password.setCustomValidity("Passwords Don't Match");
+            } else {
+                confirm_password.setCustomValidity('');
+            }
+        }
+
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
+
+        // Check if form is valid
+        form.addEventListener('submit', function(event) {
+            if ( form.checkValidity() === false ) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        }, false);
+    }, false);
+})();
+</script>
+{% endblock %}

@@ -1,6 +1,12 @@
 // main.js
 
-var $ = require('jquery');
+//var $ = require('jquery');
+// require jQuery normally
+const $ = require('jquery');
+// create global $ and jQuery variables
+global.$ = global.jQuery = $;
+
+
 // JS is equivalent to the normal "bootstrap" package
 // no need to set this to a variable, just require it
 require('bootstrap');
@@ -16,5 +22,20 @@ require('bootstrap');
 // require('bootstrap-sass/javascripts/bootstrap/popover');
 
 $(document).ready(function() {
-    $('[data-toggle="popover"]').popover();
+    //$('[data-toggle="popover"]').popover();
+
+    // Display or hide password, Checkou out the DOM order to make sure it works properly
+    $('.visible_pwd').on('click', function(event){
+        if($(this).attr('data') == "hidden"){
+            $(this).children('i').removeClass('fa-eye').addClass('fa-eye-slash');
+            $(this).attr('data','visible')
+            $(this).parent().prev('input').attr('type','text');
+        }
+        else{
+            $(this).children('i').removeClass('fa-eye-slash').addClass('fa-eye');
+            $(this).attr('data','hidden')
+            $(this).parent().prev('input').attr('type','password');
+        }
+    });
+
 });

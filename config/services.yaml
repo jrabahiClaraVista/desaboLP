@@ -1,5 +1,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+
+# to get all services use the command line : php bin/console debug:autowiring
+
 parameters:
     locale: 'en'
 
@@ -19,15 +22,26 @@ services:
         resource: '../src/*'
         exclude: '../src/{Entity,Migrations,Tests,Kernel.php}'
 
+    # Events listener
+    App\EventListener\LoginListener:
+        tags:
+            - { name: 'kernel.event_listener', event: 'security.interactive_login' }
+
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    App\Controller\HomeController:
+    App\Controller\AppController:
         arguments:
-            $mailer_builder: '@App\Service\MailBuilder'
+            $mail_builder: '@App\Service\MailBuilder'
+
+    App\Controller\SecurityController:
+        arguments:
+            $validator: '@debug.validator'
+            $mail_builder: '@App\Service\MailBuilder'
+            $random_string: '@App\Service\RandomString'
 
     App\Service\MailBuilder:
         arguments:
@@ -36,6 +50,9 @@ services:
             $smtp_password: '%smtp_password%'
             $smtp_port: '%smtp_port%'
             $smtp_encrypt: '%smtp_encrypt%'
+
+    App\Service\RandomString:
+        arguments:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

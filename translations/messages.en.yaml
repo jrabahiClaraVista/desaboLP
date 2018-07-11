@@ -4,8 +4,12 @@ title.login: Login
 title.sign_up: Sign up
 
 label.username: Username
+label.email: Email
 label.password: Password
+label.password_repeat: Password repeat
 
 action.sign_in: Sign in
+action.sign_up: Sign up
 action.forgot_pwd: Forgot password
 action.register: Register
+action.create_account: Create an account

@@ -17,6 +17,10 @@ framework:
     php_errors:
         log: true
 
+    # Enable Symfony Validator : enabled: True
+    # if we use annotations :
+    validation: { enable_annotations: true }
+
     cache:
         # Put the unique name of your app here: the prefix seed
         # is used to compute stable namespaces for cache keys.
