@@ -1,0 +1,204 @@
+/* Short reset */
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+/* Generic css */
+body {
+  max-width: 745px;
+  margin: 0 auto;
+  padding: 22px;
+  border: 15px solid #a2a2a2;
+}
+p {
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+}
+img { 
+  margin: 0 auto;
+  display: block;
+}
+a {
+  color: #4491DB;
+}
+/* Louis Pion - Désabonnement */
+h2 {
+  font-family: 'Open Sans', sans-serif;
+  max-width: 72%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 15px;
+  border-top: 1px solid #a2a2a2;
+  border-bottom: 1px solid #a2a2a2;
+  color: #555;
+}
+/* Lines <hr> like */
+.border {
+  border-bottom: 1px solid #a2a2a2;
+  padding: 10px 0;
+}
+/* Images top/end */
+.logo {
+  max-width: 308px;
+  padding: 20px 0 15px 0;
+}
+.elt-deco {
+  width: 100%;
+  padding: 30px 0 30px 0; 
+}
+/* Blocs */
+.bloc-form {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  margin: 0 auto;
+  width: 80%;
+}
+/* Adresse & Raison */
+.label {
+  width: 80px;
+  float:left;
+}
+form {
+  margin: 0 auto;
+  width: 90%;
+}
+label {
+  font: normal 14px/25px Arial, Helvetica, sans-serif
+}
+.raison {
+  line-height: 135px;
+}
+.question {
+  font: normal 14px/28px Arial, Helvetica, sans-serif
+}
+.email {
+  font: normal 14px/38px Arial, Helvetica, sans-serif;
+}
+.section-txt {
+  font-family: 'Raleway', sans-serif;
+  font-style: italic;
+  padding-top: 10px;
+}
+.section-cta {
+  max-width: 700px;
+  margin: 0 auto;
+  background: white;
+  padding: 5%;
+}
+.cta-txt {
+  font: bold 16px/21px Arial, Helvetica, sans-serif;
+  letter-spacing: 2px;
+}
+.bold {
+  margin-top: 10px;
+  font-weight: bold;  
+  letter-spacing: 1.2px;
+}
+.cta {
+  text-decoration: none;
+}
+footer {
+  color: #333;
+  font-size: 11px;
+  margin: 0 auto;
+  width: 90%;
+}
+/* Tools */
+.clear {
+    clear: both;
+}
+.spacer {
+  padding: 8px 0;
+}
+/* Option for animation on CTA*/
+button {
+  border: 3px solid #222;
+  background: transparent;
+  overflow: hidden;
+  max-width: 300px;
+  display: block;
+  margin: 0 auto;
+  outline: none;
+}
+button span {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.5em;
+  color: #222;
+  display: block;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+button span:hover {
+  cursor: pointer;
+}
+.circle {
+  display: block;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.075);
+  border-radius: 50%;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+.circle.animate {
+  -webkit-animation: effect 0.65s linear;
+          animation: effect 0.65s linear;
+}
+@-webkit-keyframes effect {
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(2.5);
+            transform: scale(2.5);
+  }
+}
+@keyframes effect {
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(2.5);
+            transform: scale(2.5);
+  }
+}
+/* Responsive */
+@media only screen and (max-width: 600px) {
+    .logo {
+      width: 98%;
+    }
+    .label {
+      display: none;
+    }
+    .question {
+      font-weight: bold;
+      line-height: 22px;
+    }
+    .subtitle {
+      font-size: 16px;
+    }
+    .none {
+      display: none;
+    }
+    .email {
+      text-align: center;
+    }
+    .section-txt {
+      font-size: 14px;
+      padding: 12px;
+    }
+    body {
+      border: 10px solid #a2a2a2;
+      padding: 10px;
+    }
+    footer {
+      font-size: 8px;
+    }
+    label {
+      line-height: 30px;
+  }
+}
+
