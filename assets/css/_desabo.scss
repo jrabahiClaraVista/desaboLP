@@ -5,9 +5,9 @@
   padding: 0;
 }
 /* Generic css */
-body {
-  max-width: 745px;
-  margin: 0 auto;
+.container {
+  max-width: 745px !important;
+  margin: 20px auto !important;
   padding: 22px;
   border: 15px solid #cccccc;
 }
@@ -25,19 +25,19 @@ a {
 /* Louis Pion - Désabonnement */
 h2 {
   font-family: 'Open Sans', sans-serif;
-  max-width: 72%;
+  //max-width: 72%;
   margin: 0 auto;
   text-align: center;
-  padding: 15px;
+  //padding: 15px;
   border-top: 1px solid #cccccc;
   border-bottom: 1px solid #cccccc;
   color: #555;
 }
 /* Lines <hr> like */
-.border {
+/*.border {
   border-bottom: 1px solid #cccccc;
   padding: 10px 0;
-}
+}*/
 /* Images top/end */
 .logo {
   max-width: 308px;
@@ -45,53 +45,59 @@ h2 {
 }
 .elt-deco {
   width: 100%;
-  padding: 30px 0 30px 0; 
+  //padding: 30px 0 30px 0; 
 }
 /* Blocs */
 .bloc-form {
   font-family: 'Open Sans', sans-serif;
   font-size: 13px;
   margin: 0 auto;
-  width: 80%;
+  //width: 80%;
 }
 /* Adresse & Raison */
 .label {
   width: 80px;
   float:left;
 }
-form {
+/*form {
   margin: 0 auto;
   width: 90%;
-}
+}*/
 label {
-  font: normal 14px/25px Arial, Helvetica, sans-serif
+  font-weight: normal;
+  font-size:14px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .raison {
   line-height: 135px;
 }
 .question {
-  font: normal 14px/28px Arial, Helvetica, sans-serif
+  font-weight: bold;
+  line-height: 22px;
+  font-family: Arial, Helvetica, sans-serif
 }
 .email {
-  font: normal 14px/38px Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size:14px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .section-txt {
   font-family: 'Raleway', sans-serif;
   font-style: italic;
   padding-top: 10px;
 }
-.section-cta {
+/*.section-cta {
   max-width: 700px;
   margin: 0 auto;
   background: white;
   padding: 5%;
-}
+}*/
 .cta-txt {
   font: bold 16px/21px Arial, Helvetica, sans-serif;
   letter-spacing: 2px;
 }
 .bold {
-  margin-top: 10px;
+  //margin-top: 10px;
   font-weight: bold;  
   letter-spacing: 1.2px;
 }
@@ -108,11 +114,11 @@ footer {
 .clear {
     clear: both;
 }
-.spacer {
+/*.spacer {
   padding: 8px 0;
-}
+}*/
 /* Option for animation on CTA*/
-button {
+button[type=submit] {
   border: 3px solid #222;
   background: transparent;
   overflow: hidden;
@@ -120,12 +126,9 @@ button {
   display: block;
   margin: 0 auto;
   outline: none;
-}
-button span {
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 1.5em;
   color: #222;
   display: block;
   -webkit-user-select: none;
@@ -136,7 +139,7 @@ button span {
   overflow: hidden;
   padding: 20px;
 }
-button span:hover {
+button[type=submit]:hover {
   cursor: pointer;
 }
 .circle {
@@ -167,19 +170,19 @@ button span:hover {
 }
 /* Responsive */
 @media only screen and (max-width: 600px) {
-    .logo {
+    /*.logo {
       width: 98%;
-    }
-    .label {
+    }*/
+    /*.label {
       display: none;
-    }
-    .question {
+    }*/
+    /*.question {
       font-weight: bold;
       line-height: 22px;
-    }
-    .subtitle {
+    }*/
+    /*.subtitle {
       font-size: 16px;
-    }
+    }*/
     .none {
       display: none;
     }
@@ -188,14 +191,15 @@ button span:hover {
     }
     .section-txt {
       font-size: 14px;
-      padding: 12px;
+      //padding: 12px;
     }
-    body {
-      border: 10px solid #cccccc;
-      padding: 10px;
+    .container {
+      border: 10px solid #cccccc !important;
+      padding: 10px !important;
+      margin: 0 auto !important;
     }
     footer {
-      font-size: 8px;
+      font-size: 11px;
     }
     label {
       line-height: 30px;

@@ -14,9 +14,12 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
+use App\Form\DesaboType;
 
 use App\Service\MailBuilder;
 
@@ -33,9 +36,21 @@ class AppController extends AbstractController
      */
     private $mail_builder;
 
-    public function __construct(MailBuilder $mail_builder)
+    /**
+     * @var string
+     */
+    private $splio_universe;
+
+    /**
+     * @var string
+     */
+    private $splio_pass;
+
+    public function __construct(MailBuilder $mail_builder, $splio_universe, $splio_pass)
     {
         $this->mail_builder = $mail_builder;
+        $this->splio_universe = $splio_universe;
+        $this->splio_pass = $splio_pass;
     }
 
 
@@ -46,10 +61,13 @@ class AppController extends AbstractController
         ]);
     }
 
-    public function unsubscribe($campaign, $email): Response
+    public function unsubscribe(Request $request,$campaign, $email): Response
     {
+        $form = $this->createForm(DesaboType::class);
+        $form->handleRequest($request);
+
         return $this->render('app/unsubscribe.html.twig', [
-            
+            'form' => $form->createView(),
         ]);
     }
 

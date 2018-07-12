@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Unsubscribe from Louis Pion{% endblock %}</title>
+    <title>{% block title %}Désabonnemet de la Newsletter Louis Pion{% endblock %}</title>
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -15,8 +15,12 @@
 <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %} mh-100">
 
 
-    <div class="container-fluid mh-100">
+    <div class="container mh-100">
         <div class="row mh-100">
+            <header class="d-flex justify-content-center flex-grow-1">
+                <a href="https://www.louispion.fr"> <img src="/images/lp_01.png" alt="" class="logo" width="308"></a>
+            </header>
+
             {% block body %}{% endblock %}
 
             {% block javascripts %}

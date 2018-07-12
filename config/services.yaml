@@ -36,6 +36,8 @@ services:
     App\Controller\AppController:
         arguments:
             $mail_builder: '@App\Service\MailBuilder'
+            $splio_universe: '%splio_universe%'
+            $splio_pass: '%splio_pass%'
 
     App\Controller\SecurityController:
         arguments:
