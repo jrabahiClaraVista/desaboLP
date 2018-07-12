@@ -15,13 +15,33 @@
 <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %} mh-100">
 
 
-    <div class="container mh-100">
-        <div class="row mh-100">
+    <div class="container">
+        <div class="row">
             <header class="d-flex justify-content-center flex-grow-1">
                 <a href="https://www.louispion.fr"> <img src="/images/lp_01.png" alt="" class="logo" width="308"></a>
             </header>
 
             {% block body %}{% endblock %}
+
+            <footer>
+                <p class="pb-3">
+                    La protection de vos données personnelles est une de nos priorités. Vos données sont uniquement utilisées pour vous permettre de rester informé des actualités de Louis Pion et de Galeries Lafayette - Royal Quartz Paris, vous proposer des offres exclusives et vous offrir des services adaptés à vos besoins.
+                </p> 
+                <p class="pb-3">
+                    Les informations recueillies sont enregistrées dans un fichier informatisé par notre société mère Sofidi.<br />
+                    Elles sont conservées pendant une durée de 5 ans et sont destinées uniquement aux services de notre société mère Sofidi et ses filiales (Louis Pion SAS, Royal Orly SAS et Royal Airport SAS).
+                </p>
+                <p class="pb-3"> 
+                    Conformément à la Règlementation en matière de protection des données à caractère personnel, vous pouvez exercer votre droit d'accès aux données vous concernant et les faire rectifier ou supprimer en faisant la demande par courrier auprès de
+                    <br />
+                    Louis Pion - Service Client
+                    <br />
+                    <a href="https://www.google.fr/search?q=23+rue+balzac+75008&rlz=1C1CHBD_frFR799FR799&oq=23+rue+balzac+75008+&aqs=chrome..69i57j0l5.14223j0j4&sourceid=chrome&ie=UTF-8">23 rue Balzac 75008 Paris</a> ou par email à l'adresse:<br /><a href="mailto:serviceclientele@louispion.fr">serviceclientele@louispion.fr</a> 
+                </p>
+                <div class="w-100 py-2">
+                    <img src="/images/elt_deco.jpg" alt="louis-pion" class="elt-deco">
+                </div>
+            </footer>
 
             {% block javascripts %}
                 <script src="{{ asset('build/js/app.js') }}"></script>

@@ -16,7 +16,6 @@ class DesaboType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', HiddenType::class)
             ->add('choice', ChoiceType::class, array(
                 'choices' => array(
                     'Je ne suis plus intéressé' => 'r1',
@@ -27,7 +26,7 @@ class DesaboType extends AbstractType
                 ),
                 'expanded' => true
                 ))
-            ->add('autre', TextType::class)
+            ->add('autre', TextType::class, array('required' => false))
             ->add('submit', SubmitType::class, array('label' => 'Je me désinscris'))
         ;
     }

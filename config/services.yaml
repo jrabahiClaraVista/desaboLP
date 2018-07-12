@@ -4,7 +4,7 @@
 # to get all services use the command line : php bin/console debug:autowiring
 
 parameters:
-    locale: 'en'
+    locale: 'fr'
 
 services:
     # default configuration for services in *this* file
@@ -36,8 +36,7 @@ services:
     App\Controller\AppController:
         arguments:
             $mail_builder: '@App\Service\MailBuilder'
-            $splio_universe: '%splio_universe%'
-            $splio_pass: '%splio_pass%'
+            $splioAPI: '@App\Service\SplioAPI'
 
     App\Controller\SecurityController:
         arguments:
@@ -52,6 +51,11 @@ services:
             $smtp_password: '%smtp_password%'
             $smtp_port: '%smtp_port%'
             $smtp_encrypt: '%smtp_encrypt%'
+
+    App\Service\SplioAPI:
+        arguments:
+            $universe: '%splio_universe%'
+            $pass: '%splio_pass%'
 
     App\Service\RandomString:
         arguments:

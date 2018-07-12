@@ -10,8 +10,12 @@ homepage:
     controller: App\Controller\AppController::homepage
 
 unsubscribe:
-    path: /unsubscribe/{campaign}/{email}
+    path: /unsubscribe/{campaign}/{email}/{hash}
     controller: App\Controller\AppController::unsubscribe
+
+validate:
+    path: /validate
+    controller: App\Controller\AppController::validate
 
 # Routes Admin
 admin:

@@ -5,89 +5,68 @@
 	<main class="px-5 pt-3">
 		<h2 class="py-3"><span class="subtitle">Désabonnement</span></h2>
 		{{ form_start(form, { 'attr': {'id' : 'clients-filter', 'class' : ''} }) }}
-			<div class="bloc-form">
-				<div class="d-flex my-3">
-					<div class="bold align-self-center"> 
-						<strong>Adresse : </strong> 
-					</div>
-					<div class="email align-self-center pl-2">some.mail@mail.fr</div>
-				</div>	
+		<div class="bloc-form">
+			<div class="d-flex my-3">
+				<div class="bold align-self-center"> 
+					<strong>Adresse : </strong> 
+				</div>
+				<div class="email align-self-center pl-2">{{email}}</div>
+			</div>	
 
-				<hr />
-				<div class="row">
-					<div class="offset-md-2 col-xs-12 col-md-10 pb-2">
-						<span class="question"> Pour quelle raison ne souhaitez-vous plus recevoir nos emails&nbsp;?</span>
+			<hr />
+			<div class="row">
+				<div class="offset-md-2 col-xs-12 col-md-10 pb-2">
+					<span class="question"> Pour quelle raison ne souhaitez-vous plus recevoir nos emails&nbsp;?</span>
+				</div>
+				<div class="w-100"></div>
+				<div class="col-xs-12 col-md-2 bold align-self-center"> 
+					Raison :
+				</div>
+				<div class="form-group pl-3 col-xs-12 col-md-10 mb-0">
+					<div class="form-check py-1">
+						{{ form_widget(form.choice[0], { 'attr': {'class' : 'form-check-input'} }) }}
+						<label class="form-check-label" for="desabo_choice_0">Je ne suis plus intéressé</label>
 					</div>
-					<div class="w-100"></div>
-					<div class="col-xs-12 col-md-2 bold align-self-center"> 
-						Raison :
+					<div class="form-check py-1">
+						{{ form_widget(form.choice[1], { 'attr': {'class' : 'form-check-input'} }) }}
+						<label class="form-check-label" for="desabo_choice_1">Les messages sont trop fréquents</label>
 					</div>
-					<div class="form-group pl-3 col-xs-12 col-md-10 mb-0">
-						<div class="form-check py-1">
-							{{ form_widget(form.choice[0], { 'attr': {'class' : 'form-check-input'} }) }}
-							<label class="form-check-label" for="exampleRadios1">Je ne suis plus intéressé</label>
-						</div>
-						<div class="form-check py-1">
-							{{ form_widget(form.choice[1], { 'attr': {'class' : 'form-check-input'} }) }}
-							<label class="form-check-label" for="exampleRadios1">Les messages sont trop fréquents</label>
-						</div>
-						<div class="form-check py-1">
-							{{ form_widget(form.choice[2], { 'attr': {'class' : 'form-check-input'} }) }}
-							<label class="form-check-label" for="exampleRadios1">Je n'arrive pas à lire les messages</label>
-						</div>
-						<div class="form-check py-1">
-							{{ form_widget(form.choice[3], { 'attr': {'class' : 'form-check-input'} }) }}
-							<label class="form-check-label" for="exampleRadios1">Je n'ai jamais demandé à être inscrit</label>
-						</div>
-						<div class="form-check py-1">
-							{{ form_widget(form.choice[4], { 'attr': {'class' : 'form-check-input'} }) }}
-							<label class="form-check-label" for="exampleRadios1">Autre :</label>
-							{{ form_widget(form.autre, { 'attr': {'class' : ''} }) }}
-						</div>
+					<div class="form-check py-1">
+						{{ form_widget(form.choice[2], { 'attr': {'class' : 'form-check-input'} }) }}
+						<label class="form-check-label" for="desabo_choice_2">Je n'arrive pas à lire les messages</label>
+					</div>
+					<div class="form-check py-1">
+						{{ form_widget(form.choice[3], { 'attr': {'class' : 'form-check-input'} }) }}
+						<label class="form-check-label" for="desabo_choice_3">Je n'ai jamais demandé à être inscrit</label>
+					</div>
+					<div class="form-check py-1">
+						{{ form_widget(form.choice[4], { 'attr': {'class' : 'form-check-input'} }) }}
+						<label class="form-check-label" for="desabo_choice_4">Autre :</label>
+						{{ form_widget(form.autre, { 'attr': {'class' : ''} }) }}
 					</div>
 				</div>
-				<hr />
 			</div>
+			<hr />
+		</div>
 
-			<div class="w-100"></div>
+		<div class="w-100"></div>
 
-			<section class="section-txt">		
-				<p class="italic clear">
-					Nous essayons chaque jour de vous fournir des contenus inspirants, un œil mode aguerri et une expertise horlogère toujours plus adaptée à vos besoins.<br />
-					C’est pourquoi il est important pour nous de pouvoir toujours communiquer avec nos clients privilégiés comme vous&nbsp;! 
-				</p>
-				<p class="bold">
-					Êtes-vous sûr(e) de vouloir vous désinscrire&nbsp;?
-				</p>
-			</section>	
-			
+		<section class="section-txt">		
+			<p class="italic clear">
+				Nous essayons chaque jour de vous fournir des contenus inspirants, un œil mode aguerri et une expertise horlogère toujours plus adaptée à vos besoins.<br />
+				C’est pourquoi il est important pour nous de pouvoir toujours communiquer avec nos clients privilégiés comme vous&nbsp;! 
+			</p>
+			<p class="bold">
+				Êtes-vous sûr(e) de vouloir vous désinscrire&nbsp;?
+			</p>
+		</section>	
+		
 
-			<div class="form-group py-4">
-				{{ form_widget(form.email, { 'attr': {'class' : 'form-control'} }) }}
-				{{ form_widget(form.submit, {'attr': {'class': 'cta-txt'}, 'label' : 'Je me désinscris' }) }}
-			</div>
+		<div class="form-group py-4">
+			{{ form_widget(form.submit, {'attr': {'class': 'cta-txt'}, 'label' : 'Je me désinscris' }) }}
+		</div>
 		
 		{{ form_end(form) }}
 	</main>
-
-	<footer>
-		<p class="pb-3">
-			La protection de vos données personnelles est une de nos priorités. Vos données sont uniquement utilisées pour vous permettre de rester informé des actualités de Louis Pion et de Galeries Lafayette - Royal Quartz Paris, vous proposer des offres exclusives et vous offrir des services adaptés à vos besoins.
-		</p> 
-		<p class="pb-3">
-			Les informations recueillies sont enregistrées dans un fichier informatisé par notre société mère Sofidi.<br />
-			Elles sont conservées pendant une durée de 5 ans et sont destinées uniquement aux services de notre société mère Sofidi et ses filiales (Louis Pion SAS, Royal Orly SAS et Royal Airport SAS).
-		</p>
-		<p class="pb-3"> 
-			Conformément à la Règlementation en matière de protection des données à caractère personnel, vous pouvez exercer votre droit d'accès aux données vous concernant et les faire rectifier ou supprimer en faisant la demande par courrier auprès de
-			<br />
-			Louis Pion - Service Client
-			<br />
-			<a href="https://www.google.fr/search?q=23+rue+balzac+75008&rlz=1C1CHBD_frFR799FR799&oq=23+rue+balzac+75008+&aqs=chrome..69i57j0l5.14223j0j4&sourceid=chrome&ie=UTF-8">23 rue Balzac 75008 Paris</a> ou par email à l'adresse:<br /><a href="mailto:serviceclientele@louispion.fr">serviceclientele@louispion.fr</a> 
-		</p>
-		<div class="w-100 py-2">
-			<img src="/images/elt_deco.jpg" alt="louis-pion" class="elt-deco">
-		</div>
-	</footer>
 
 {% endblock %}
