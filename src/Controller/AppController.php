@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -46,7 +47,7 @@ class AppController extends AbstractController
 
     public function homepage(): Response
     {
-        throw new \Exception('404 Not Found');
+        throw new NotFoundHttpException('404 Not Found');
     }
 
     public function unsubscribe(Request $request, $campaign, $email, $hash): Response
@@ -58,7 +59,7 @@ class AppController extends AbstractController
 
         if( isset($exists->code)) {
             if ($exists->code == 404) {
-                throw new \Exception('404 Not Found');
+                throw new NotFoundHttpException('404 Not Found');
             }
         }
 
@@ -88,14 +89,14 @@ class AppController extends AbstractController
 
             if(isset($update->code)){
                 if($update->code == 404){
-                    throw new \Exception('404 Not Found');
+                    throw new NotFoundHttpException('404 Not Found');
                 }
                 else{
                     $addBlacklist = $this->splioAPI->addBlacklist($email);
 
                     if(isset($addBlacklist->code)){
                         if($addBlacklist->code == 404){
-                            throw new \Exception('404 Not Found');
+                            throw new NotFoundHttpException('404 Not Found');
                         }
                         else{
                             return $this->redirectToRoute('validate');
