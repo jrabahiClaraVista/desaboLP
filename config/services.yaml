@@ -40,7 +40,7 @@ services:
 
     App\Controller\SecurityController:
         arguments:
-            $validator: '@debug.validator'
+            $validator: '@Symfony\Component\Validator\Validator\ValidatorInterface'
             $mail_builder: '@App\Service\MailBuilder'
             $random_string: '@App\Service\RandomString'
 
