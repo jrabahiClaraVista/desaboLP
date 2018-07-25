@@ -82,7 +82,6 @@ class SplioAPI
             'fields'    => array(
                 array('name' => 'Champ_1', 'value' => $options[0]),//Nom de la campagne
                 array('name' => 'Champ_2', 'value' => $options[1]),//Raison
-                array('name' => 'Champ_3', 'value' => $options[2]),//Raison - Autre
                 array('name' => 'is_optin', 'value' => 0),//optin
             )
         );

@@ -26,7 +26,6 @@ class DesaboType extends AbstractType
                 ),
                 'expanded' => true
                 ))
-            ->add('autre', TextType::class, array('required' => false))
             ->add('submit', SubmitType::class, array('label' => 'Je me désinscris'))
         ;
     }

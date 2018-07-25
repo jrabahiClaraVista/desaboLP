@@ -84,7 +84,7 @@ class AppController extends AbstractController
         $data = $form->getData();
 
         if ($request->getMethod() == 'POST' && $form->isSubmitted() && $form->isValid()) {
-            $update = $this->splioAPI->update($email,[$campaign, $data['choice'], $data['autre']]);
+            $update = $this->splioAPI->update($email,[$campaign, $data['choice']]);
 
 
             if(isset($update->code)){
