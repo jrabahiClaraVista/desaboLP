@@ -80,8 +80,8 @@ class SplioAPI
         //Dans le cas d'un client qui n'existe pas
         $query = array(
             'fields'    => array(
-                array('name' => 'Champ_1', 'value' => $options[0]),//Nom de la campagne
-                array('name' => 'Champ_2', 'value' => $options[1]),//Raison
+                array('name' => 'desabo_campagne', 'value' => $options[0]),//Nom de la campagne
+                array('name' => 'desabo_motif', 'value' => $options[1]),//Raison
                 array('name' => 'is_optin', 'value' => 0),//optin
             )
         );
