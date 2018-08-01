@@ -69,8 +69,14 @@ class AppController extends AbstractController
             }
         }
 
+        $email_hash = "";
+        foreach ($exists->fields as $key => $field) {
+            if ( $field->name == 'email_hash' )
+                $email_hash = $field->value;
+        }
+
         // Secure email check
-        if($hash != $exists->fields[80]->value){
+        if($hash != $email_hash){
             $email = null;
         }
 
