@@ -53,6 +53,9 @@ class AppController extends AbstractController
     public function unsubscribe(Request $request, $campaign, $email, $hash): Response
     {
         // check if email exists and is unsub
+        $campaign = urldecode ( $campaign );
+        $email = urldecode ( $email );
+        $hash = urldecode ( $hash );
 
         $exists = $this->splioAPI->exists($email);
         $isBlacklist = $this->splioAPI->isBlacklist($email);
@@ -79,8 +82,6 @@ class AppController extends AbstractController
         if($hash != $email_hash){
             $email = null;
         }
-
-        $campaign = urldecode ( $campaign );
 
         // Start unsuscribe form
 
