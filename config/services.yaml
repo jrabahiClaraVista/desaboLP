@@ -56,6 +56,7 @@ services:
         arguments:
             $universe: '%splio_universe%'
             $pass: '%splio_pass%'
+            $api_key: '%api_key%'
 
     App\Service\RandomString:
         arguments:

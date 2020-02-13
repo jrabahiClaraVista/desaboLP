@@ -10,12 +10,12 @@ class SplioAPI
     private $api_key;
 
 
-    public function __construct($universe, $pass)
+    public function __construct($universe, $pass, $api_key)
     {
         #$this->container = $container;
         $this->universe = $universe;
         $this->pass = $pass;
-        $this->api_key = "1efa83bddf240c33c04667dd7637e836b6fc8d3a298fe7f00b99e4e19d243bd2";
+        $this->api_key = $api_key;
     }
 
     public function auth($session)
