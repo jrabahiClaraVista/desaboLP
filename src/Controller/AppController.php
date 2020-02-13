@@ -22,6 +22,8 @@ use App\Form\DesaboType;
 use App\Service\MailBuilder;
 use App\Service\SplioAPI;
 
+use App\Entity\SplioToken;
+
 /**
 * Controller used to manage the unsuscribe page
 *
@@ -50,12 +52,91 @@ class AppController extends AbstractController
         throw new NotFoundHttpException('404 Not Found');
     }
 
+    public function test(Request $request, $method, $email): Response
+    {
+        $session = $request->getSession();
+
+        // check if email exists and is unsub
+        $method = urldecode ( $method );
+        $email = urldecode ( $email );
+
+        $em = $this->getDoctrine()->getManager();
+        $splioToken = $em->getRepository(SplioToken::class)->findOneBy([],["createdAt" => "DESC"]);
+
+        $date = new \DateTime();
+
+        if($splioToken == null){
+            $splioToken = new SplioToken();
+            $auth = $this->splioAPI->auth($session);
+            $splioToken->setToken($auth->token);
+            $em->persist($splioToken);
+            $em->flush();
+        }
+        elseif($splioToken->getCreatedAt() < $date->modify("-59 minutes")) {
+            $splioToken = new SplioToken();
+            $auth = $this->splioAPI->auth($session);
+            $splioToken->setToken($auth->token);
+            $em->persist($splioToken);
+            $em->flush();
+        }
+
+        $token = $splioToken->getToken();
+
+        $exists = $this->splioAPI->exists($email);
+
+
+        switch($method){
+            case 'PUT' :
+                $result = $this->splioAPI->addBlacklist($email);
+            break;
+            case 'DELETE' :
+                $result = $this->splioAPI->deleteBlacklistPerso($email, $token);
+            break;
+            case 'POST' :
+                $result = $this->splioAPI->AddBlacklistPerso($email, $token);
+            break;
+            default :
+                $result = $this->splioAPI->isBlacklist($email);
+            break;
+        }
+
+        return $this->render('app/_test.html.twig', [
+            'method'        => $method,
+            'exists'        => $exists,
+            'result'        => $result,
+            'auth'          => $splioToken
+        ]);
+    }
+
     public function unsubscribe(Request $request, $campaign, $email, $hash): Response
     {
+        $session = $request->getSession();
         // check if email exists and is unsub
         $campaign = urldecode ( $campaign );
         $email = urldecode ( $email );
         $hash = urldecode ( $hash );
+
+        $em = $this->getDoctrine()->getManager();
+        $splioToken = $em->getRepository(SplioToken::class)->findOneBy([],["createdAt" => "DESC"]);
+
+        $date = new \DateTime();
+
+        if($splioToken == null){
+            $splioToken = new SplioToken();
+            $auth = $this->splioAPI->auth($session);
+            $splioToken->setToken($auth->token);
+            $em->persist($splioToken);
+            $em->flush();
+        }
+        elseif($splioToken->getCreatedAt() < $date->modify("-59 minutes")) {
+            $splioToken = new SplioToken();
+            $auth = $this->splioAPI->auth($session);
+            $splioToken->setToken($auth->token);
+            $em->persist($splioToken);
+            $em->flush();
+        }
+
+        $token = $splioToken->getToken();
 
         $exists = $this->splioAPI->exists($email);
         $isBlacklist = $this->splioAPI->isBlacklist($email);
@@ -99,7 +180,8 @@ class AppController extends AbstractController
                     throw new NotFoundHttpException('404 Not Found');
                 }
                 else{
-                    $addBlacklist = $this->splioAPI->addBlacklist($email);
+                    //$addBlacklist = $this->splioAPI->addBlacklist($email);
+                    $addBlacklist = $this->splioAPI->AddBlacklistPerso($email, $token);
 
                     if(isset($addBlacklist->code)){
                         if($addBlacklist->code == 404){

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	
+	<main class="px-5 pt-3 w-100">
+		<h2 class="py-3 align-self-start "><span class="subtitle">Test Page</span></h2>
+
+		<section class="section-txt py-5 align-self-start ">
+			<h3>Method : {{ method }}</h3>
+			<p class="italic clear">
+				{{ dump(auth) }}
+			</p>
+			<p class="italic clear">
+				{{ dump(exists) }}
+			</p>
+			<p class="italic clear">
+				{{ dump(result) }}
+			</p>
+		</section>
+	</main>
+
+{% endblock %}

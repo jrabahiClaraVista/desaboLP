@@ -13,6 +13,10 @@ unsubscribe:
     path: /unsubscribe/{campaign}/{email}/{hash}
     controller: App\Controller\AppController::unsubscribe
 
+test:
+    path: /test/{method}/{email}
+    controller: App\Controller\AppController::test
+
 validate:
     path: /validate
     controller: App\Controller\AppController::validate
