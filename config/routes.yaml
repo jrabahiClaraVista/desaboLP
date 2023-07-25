@@ -17,6 +17,10 @@ test:
     path: /test/{method}/{email}
     controller: App\Controller\AppController::test
 
+test2:
+    path: /test2/{method}/{email}
+    controller: App\Controller\AppController::testScp
+
 validate:
     path: /validate
     controller: App\Controller\AppController::validate
